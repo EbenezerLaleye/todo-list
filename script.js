@@ -2,27 +2,27 @@
 // })
 
 const taskForm = document.querySelector("#task-list-form")
-const input=document.querySelector("#task-list-input")
+const input = document.querySelector("#task-list-input")
 const subBtn = document.querySelector("#new-task-submit")
-const taskList =document.querySelector("#task-list")
+const taskList = document.querySelector("#task-list")
 
-taskForm.addEventListener("submit",(e)=>{
+taskForm.addEventListener("submit", (e) => {
     e.preventDefault()
     const newTask = document.createElement("div")
     newTask.classList.add("task")
 
-    const newContent =document.createElement("div")
+    const newContent = document.createElement("div")
     newContent.classList.add("content")
 
-    const taskText =document.createElement("input")
+    const taskText = document.createElement("input")
     taskText.type = "text"
     taskText.classList.add("task-text")
     taskText.value = input.value
-    taskText.setAttribute("readonly","readonly")
-
-    const newAction =document.createElement("div")
+    taskText.setAttribute("readonly", "readonly")
+    taskText.setAttribute("size", "40")
+    const newAction = document.createElement("div")
     newAction.classList.add("action")
-    
+
 
     const editBtn = document.createElement("button")
     editBtn.classList.add("button")
@@ -30,7 +30,7 @@ taskForm.addEventListener("submit",(e)=>{
     const delBtn = createDelBtn()
     editBtn.innerHTML = "Edit"
 
- 
+
 
     newContent.append(taskText)
     newAction.append(editBtn)
@@ -39,30 +39,30 @@ taskForm.addEventListener("submit",(e)=>{
     newTask.append(newAction)
     taskList.append(newTask)
 
-    input.value=""
+    input.value = ""
 
-    editBtn.addEventListener("click", ()=>{
-        if(editBtn.innerHTML==="Edit"){
+    editBtn.addEventListener("click", () => {
+        if (editBtn.innerHTML === "Edit") {
             taskText.toggleAttribute("readonly")
             taskText.classList.toggle("task-text")
             taskText.classList.toggle("editmode")
 
-            editBtn.innerHTML="Save"
-        }else{
-            editBtn.innerHTML="Edit"
+            editBtn.innerHTML = "Save"
+        } else {
+            editBtn.innerHTML = "Edit"
             taskText.classList.toggle("editmode")
             taskText.classList.toggle("task-text")
             taskText.toggleAttribute("readonly")
         }
-    
+
     })
 })
 
-function createDelBtn (){
+function createDelBtn() {
     const delBtn = document.createElement("button")
     delBtn.innerHTML = "Delete"
     delBtn.classList.add("button")
-    delBtn.addEventListener("click",()=>{
+    delBtn.addEventListener("click", () => {
         (delBtn.parentElement).parentElement.remove()
     })
     return delBtn
